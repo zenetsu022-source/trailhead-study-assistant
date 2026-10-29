@@ -12,7 +12,7 @@ pip install -r requirements.txt
 playwright install chromium
 ```
 
-Create a `.env` file with `GEMINI_API_KEY=...`. Optionally set `GEMINI_MODEL`, `BRAVE_EXECUTABLE_PATH`, or `TRAILHEAD_BROWSER_PROFILE`. Never share credentials.
+Create a `.env` file with `GEMINI_API_KEY=...`. The default model is `gemini-3.8-flash`; optionally set `GEMINI_MODEL`, `BRAVE_EXECUTABLE_PATH`, or `TRAILHEAD_BROWSER_PROFILE`. Never share credentials.
 
 ## Usage
 
