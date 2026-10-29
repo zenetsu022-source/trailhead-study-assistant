@@ -33,6 +33,10 @@ streamlit run app.py
 
 Open the local address Streamlit prints, click **Open Brave Login** once, log in to Trailhead, close Brave, then paste a module URL and click **Generate Study Guide**. The finished PDF can be downloaded directly from the page.
 
+## Streamlit Community Cloud
+
+This repository also includes a hosted fallback. On Community Cloud, Brave is unavailable, so the app extracts publicly accessible Trailhead HTML with HTTP/BeautifulSoup. Authenticated-only content still requires local Brave mode. To deploy, select this repository and `app.py` in Streamlit Community Cloud, then add `GEMINI_API_KEY` in the app's Secrets settings. The API key input in the sidebar remains available for session-only use.
+
 ## Modules
 
 - `config.py` — environment settings and Brave path discovery.
