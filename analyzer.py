@@ -14,7 +14,13 @@ class ModuleReport(BaseModel):
 PROMPT = """Create a detailed Salesforce Trailhead study report from this read-only extraction. Explain concepts accurately. Do not claim completion, submit quizzes, or provide assessment-bypass instructions. For challenge content, provide a learning-oriented walkthrough only. Return only the requested schema.\n\nEXTRACTION:\n"""
 def analyze(extraction: dict[str, Any]) -> ModuleReport:
     client = genai.Client(api_key=gemini_api_key())
-    response = client.models.generate_content(model=MODEL, contents=PROMPT + json.dumps(extraction, ensure_ascii=False), config=types.GenerateContentConfig(response_mime_type="application/json", response_schema=ModuleReport, temperature=0.2))
+    config = types.GenerateContentConfig(response_mime_type="application/json", response_schema=ModuleReport, temperature=0.2)
+    contents = PROMPT + json.dumps(extraction, ensure_ascii=False)
+    try:
+        response = client.models.generate_content(model=MODEL, contents=contents, config=config)
+    except Exception as exc:
+        if "gemini-2.5-flash" not in str(exc): raise
+        response = client.models.generate_content(model="gemini-3.8-flash", contents=contents, config=config)
     return ModuleReport.model_validate_json(response.text)
 
 
