@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 load_dotenv()
 ROOT = Path(__file__).resolve().parent
 PROFILE_DIR = Path(os.getenv("TRAILHEAD_BROWSER_PROFILE", ROOT / ".brave-profile"))
-MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
+MODEL = os.getenv("GEMINI_MODEL", "gemini-3.8-flash")
 def brave_executable() -> str:
     override = os.getenv("BRAVE_EXECUTABLE_PATH")
     if override: return override
